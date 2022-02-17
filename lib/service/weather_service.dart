@@ -16,5 +16,9 @@ class WeatherService{
     void getWeather({required String cityName}) async
     {
       int id = await getCityId(cityName: cityName);
+      Uri url = Uri.parse('$baseUrl/api/location/$id');
+      http.Response response = await http.get(url);
+
+      Map<String, dynamic> jsonData=jsonDecode(response.body);
     }
   }
